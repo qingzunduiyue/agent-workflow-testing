@@ -1,5 +1,7 @@
 # Agent 接口与风控回归测试
 
+[![回归测试](https://github.com/qingzunduiyue/agent-workflow-testing/actions/workflows/regression.yml/badge.svg)](https://github.com/qingzunduiyue/agent-workflow-testing/actions/workflows/regression.yml)
+
 这是从一个现有 FastAPI 与 LangGraph 项目提取的最小测试快照，用来展示用例设计、缺陷复现、最小修正和回归验证。baseline 保留修复前行为，fixed 保存修复副本。原项目没有被修改。私有示例文案替换为合成文本，不包含密钥、模型、知识库、用户文档或真实业务数据。
 
 ## 本地已执行的结果
@@ -40,7 +42,7 @@ python -B verify_all.py
 
 verify_all.py 严格检查 baseline 仅出现三个指定断言失败且没有执行错误，再要求 fixed 全部通过。单独运行 baseline 返回非零是预期结果，不能使用忽略所有错误的方式让 CI 变绿。结果写入 *_raw.log、*_result.json 和 verification-summary.json。
 
-GitHub Actions 配置已提供。本地结果不代表云端已通过；必须以仓库中的真实 Actions 执行结果为准。依赖安装需要网络，测试本身不调用外部服务。
+GitHub Actions 已于 2026 年 10 月 22 日在 Ubuntu、Python 3.11 与 Node.js 22 上从空环境安装依赖，并通过基线复现和修复回归。详见[云端执行记录](https://github.com/qingzunduiyue/agent-workflow-testing/actions/runs/39786203506)。依赖安装需要网络，测试本身不调用外部服务。
 
 ## 文件
 
@@ -50,4 +52,4 @@ GitHub Actions 配置已提供。本地结果不代表云端已通过；必须�
 - fix.diff：修复前后的实际差异。
 - snapshot_manifest.json：相对路径与快照 SHA-256。
 
-这些是本次新增的测试实践，不是对过往实习职责或历史测试成果的证明。
+测试与修复实践于 2026 年 10 月补充完成；项目定位为接口、工作流与前端状态映射的回归练习。
