@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "baseline": {
+      "tests_run": 10,
+      "passed": 7,
+      "failed": 3,
+      "errors": 0
+    },
+    "fixed": {
+      "tests_run": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0
+    }
+  },
+  "verdict": "expected baseline failures and fixed regression pass",
+  "cloud_ci_status": "check the actual GitHub Actions run; this local result does not confirm cloud execution"
+}

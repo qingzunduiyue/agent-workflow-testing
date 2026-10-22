@@ -1,0 +1,11 @@
+{
+  "name": "agent-quality-regression-demo",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test": "python verify_all.py"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

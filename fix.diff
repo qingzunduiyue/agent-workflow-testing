@@ -1,0 +1,75 @@
+--- baseline/app/main.py
++++ fixed/app/main.py
+@@ -3,7 +3,7 @@
+ from fastapi import FastAPI
+ from pydantic import BaseModel, Field
+ from app.engine.router import classify_intent
+-from app.engine.agent_executor import run_agent
++from app.engine.agent_executor import run_agent_with_state
+ from fastapi.middleware.cors import CORSMiddleware
+ 
+ # 1. 初始化 FastAPI 实例 (Uvicorn 依赖这个 app)
+@@ -40,7 +40,7 @@
+     print(f"🚦 [Supervisor Router] 意图识别完成，当前流量已路由至 -> {target_plugin}")
+ 
+     # 第二步：透传给底层通用执行器
+-    response = await run_agent(
++    result = await run_agent_with_state(
+         user_input=request.message,
+         plugin_name=target_plugin,
+         session_id=request.session_id
+@@ -50,5 +50,7 @@
+     return {
+         "status": "success",
+         "plugin_used": target_plugin,
+-        "reply": response
++        "reply": result["final_response"],
++        "is_safe": result.get("is_safe", True),
++        "risk_reason": result.get("risk_reason") or None
+     }--- baseline/app/engine/agent_executor.py
++++ fixed/app/engine/agent_executor.py
+@@ -97,7 +97,7 @@
+ # ==========================================
+ # 对外唯一 API
+ # ==========================================
+-async def run_agent(user_input: str, plugin_name: str = "default", session_id: str = "default_thread") -> str:
++async def run_agent_with_state(user_input: str, plugin_name: str = "default", session_id: str = "default_thread") -> dict:
+     initial_state = {
+         "user_input": user_input,
+         "plugin_name": plugin_name,
+@@ -105,4 +105,9 @@
+     }
+ 
+     result = await workflow.ainvoke(initial_state)
+-    return result["final_response"]+    return result
++
++async def run_agent(user_input: str, plugin_name: str = "default", session_id: str = "default_thread") -> str:
++    """Preserve the existing string-returning entry point for direct callers."""
++    result = await run_agent_with_state(user_input, plugin_name, session_id)
++    return result["final_response"]
+--- baseline/frontend/src/hooks/useAgentChat.ts
++++ fixed/frontend/src/hooks/useAgentChat.ts
+@@ -43,9 +43,9 @@
+         user_input: text,
+         // 对齐后端的 plugin_used
+         plugin_name: rawData.plugin_used || 'unknown',
+-        // 后端 main.py 里目前没有返回 is_safe 字段，先默认放行
+-        is_safe: true,
+-        risk_reason: null,
++        // Preserve the backend guardrail result for the warning renderer.
++        is_safe: rawData.is_safe !== false,
++        risk_reason: rawData.risk_reason ?? null,
+         // 对齐后端的 reply (为了防止 reply 是一个嵌套的字典导致 React 崩溃，做一层安全转换)
+         final_response: typeof rawData.reply === 'string' ? rawData.reply : JSON.stringify(rawData.reply, null, 2)
+       };
+--- baseline/test_memory.py
++++ fixed/test_memory.py
+@@ -1,7 +1,7 @@
+ import requests
+ import time
+ 
+-BASE_URL = "http://127.0.0.1:8000/api/v1/chat"
++BASE_URL = "http://127.0.0.1:8000/api/chat"
+ 
+ 
+ def send_chat_request(message: str, plugin_name: str, session_id: str):

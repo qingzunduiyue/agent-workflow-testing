@@ -1,0 +1,113 @@
+{
+  "snapshot_kind": "minimal source excerpts with synthetic example prose",
+  "redacted_files": [
+    "app/engine/router.py",
+    "test_memory.py"
+  ],
+  "files": [
+    {
+      "path": "baseline/app/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "baseline/app/engine/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "baseline/app/engine/agent_executor.py",
+      "sha256": "acb4df9bcfa7bfe73c9825083db7914d82726504cce303f00aae487e1fd8f3d4"
+    },
+    {
+      "path": "baseline/app/engine/guardrail.py",
+      "sha256": "6b1dce2d7081a6e87fcd4f4c22e54088c3e0d599c3c3c32743fd437c97184139"
+    },
+    {
+      "path": "baseline/app/engine/router.py",
+      "sha256": "bb7f049b197080ac0b745c11779d3d457f8e9578c3cb0a6fa9d1c301d1c3be1a"
+    },
+    {
+      "path": "baseline/app/engine/state.py",
+      "sha256": "167265b87b78a764c1ed7bdd0c0e902f2144198ec7dbbf045f14b67fdf63d39f"
+    },
+    {
+      "path": "baseline/app/main.py",
+      "sha256": "7f6c23b4119b0cc7f5955152291008014ccbcb6e717416140b381b9e64f944d9"
+    },
+    {
+      "path": "baseline/frontend/package.json",
+      "sha256": "8ba83ecfb2b2396b02e07ac11a498ea446c7e23f4b2e9833c324c6a95934e7be"
+    },
+    {
+      "path": "baseline/frontend/src/components/layout/ChatContainer.tsx",
+      "sha256": "b89e69eaa43d34dd37bfcbfd2b8040eb42463bff10aa3023bdaf06a4a60aa513"
+    },
+    {
+      "path": "baseline/frontend/src/hooks/useAgentChat.ts",
+      "sha256": "a1ea10d4dd937ecfd175c32c7e9e47df0910f8850f2c2f1c85bc204e6d33f154"
+    },
+    {
+      "path": "baseline/frontend/src/types/schema.ts",
+      "sha256": "dffc15a365792f61538b3637af72e3fec54e733b5acf1e3eedbc55b58cd407b2"
+    },
+    {
+      "path": "baseline/requirements.txt",
+      "sha256": "9970682e3b65b66ef9623dc24be88627e7352d8725737a4fae6c27f1e9d3448c"
+    },
+    {
+      "path": "baseline/test_memory.py",
+      "sha256": "75a0d58cb6860e547055d982ff23a1e5cd0040185cc46dacb73d51f93db8a24d"
+    },
+    {
+      "path": "fixed/app/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixed/app/engine/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fixed/app/engine/agent_executor.py",
+      "sha256": "4cfdba1b5012826e7a79378f6ba48665e4c8a23d208bc4fc79f5e1025754d276"
+    },
+    {
+      "path": "fixed/app/engine/guardrail.py",
+      "sha256": "6b1dce2d7081a6e87fcd4f4c22e54088c3e0d599c3c3c32743fd437c97184139"
+    },
+    {
+      "path": "fixed/app/engine/router.py",
+      "sha256": "bb7f049b197080ac0b745c11779d3d457f8e9578c3cb0a6fa9d1c301d1c3be1a"
+    },
+    {
+      "path": "fixed/app/engine/state.py",
+      "sha256": "167265b87b78a764c1ed7bdd0c0e902f2144198ec7dbbf045f14b67fdf63d39f"
+    },
+    {
+      "path": "fixed/app/main.py",
+      "sha256": "3c6d988e9724d490775d17a1a12d0d8ab67a9f2691fe44e66dc13736c104f8f1"
+    },
+    {
+      "path": "fixed/frontend/package.json",
+      "sha256": "8ba83ecfb2b2396b02e07ac11a498ea446c7e23f4b2e9833c324c6a95934e7be"
+    },
+    {
+      "path": "fixed/frontend/src/components/layout/ChatContainer.tsx",
+      "sha256": "b89e69eaa43d34dd37bfcbfd2b8040eb42463bff10aa3023bdaf06a4a60aa513"
+    },
+    {
+      "path": "fixed/frontend/src/hooks/useAgentChat.ts",
+      "sha256": "9b5c8dda380fcf18f7c4667949c187db967c99c8efd7c9fe8c7a69eb2aaec196"
+    },
+    {
+      "path": "fixed/frontend/src/types/schema.ts",
+      "sha256": "dffc15a365792f61538b3637af72e3fec54e733b5acf1e3eedbc55b58cd407b2"
+    },
+    {
+      "path": "fixed/requirements.txt",
+      "sha256": "9970682e3b65b66ef9623dc24be88627e7352d8725737a4fae6c27f1e9d3448c"
+    },
+    {
+      "path": "fixed/test_memory.py",
+      "sha256": "2f29815f4920aa7a4ae2d58cbd3d421f591b740fe76523b5f9683fdbf1bbc6de"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "variant": "fixed",
+  "tests_run": 10,
+  "passed": 10,
+  "failed": 0,
+  "errors": 0,
+  "tests": [
+    {
+      "test": "__main__.AgentChecks.test_01_guardrail_rules_and_normal_input",
+      "status": "passed",
+      "seconds": 0.007
+    },
+    {
+      "test": "__main__.AgentChecks.test_02_multiple_rules_have_documented_current_precedence",
+      "status": "passed",
+      "seconds": 0.001
+    },
+    {
+      "test": "__main__.AgentChecks.test_03_blocked_graph_skips_agent_execution",
+      "status": "passed",
+      "seconds": 0.0139
+    },
+    {
+      "test": "__main__.AgentChecks.test_04_allowed_graph_preserves_session_and_string_api",
+      "status": "passed",
+      "seconds": 0.006
+    },
+    {
+      "test": "__main__.AgentChecks.test_05_api_rejects_invalid_request_before_model_routing",
+      "status": "passed",
+      "seconds": 0.024
+    },
+    {
+      "test": "__main__.AgentChecks.test_06_api_success_and_session_transmission",
+      "status": "passed",
+      "seconds": 0.009
+    },
+    {
+      "test": "__main__.AgentChecks.test_07_blocked_api_exposes_guardrail_contract",
+      "status": "passed",
+      "seconds": 0.0081
+    },
+    {
+      "test": "__main__.AgentChecks.test_08_frontend_hook_preserves_blocked_state",
+      "status": "passed",
+      "seconds": 0.4457
+    },
+    {
+      "test": "__main__.AgentChecks.test_09_existing_memory_probe_targets_live_api_route",
+      "status": "passed",
+      "seconds": 0.0106
+    },
+    {
+      "test": "__main__.AgentChecks.test_10_routing_before_guardrail_and_exception_behavior",
+      "status": "passed",
+      "seconds": 0.0122
+    }
+  ],
+  "observations": {
+    "multiple_rule_reason": "Novel rule overwrites finance reason; desired precedence needs product confirmation.",
+    "successful_response_keys": [
+      "is_safe",
+      "plugin_used",
+      "reply",
+      "risk_reason",
+      "status"
+    ],
+    "blocked_api_response": {
+      "status": "success",
+      "plugin_used": "finance_assistant",
+      "reply": "⚠️ 触发金融合规护栏：您的请求涉及敏感投资建议，根据 NFA 合规要求已被系统拦截。",
+      "is_safe": false,
+      "risk_reason": "触发金融合规护栏：您的请求涉及敏感投资建议，根据 NFA 合规要求已被系统拦截。"
+    },
+    "frontend_hook_state": {
+      "blocked": {
+        "session_id": "synthetic-session",
+        "user_input": "synthetic message",
+        "plugin_name": "finance_assistant",
+        "is_safe": false,
+        "risk_reason": "synthetic block",
+        "final_response": "blocked"
+      },
+      "allowed": {
+        "session_id": "synthetic-session",
+        "user_input": "synthetic message",
+        "plugin_name": "finance_assistant",
+        "is_safe": true,
+        "risk_reason": null,
+        "final_response": "allowed"
+      }
+    },
+    "memory_probe": {
+      "path": "/api/chat",
+      "http_status": 200
+    },
+    "blocked_request_classifier_awaits": 1,
+    "upstream_timeout": {
+      "http_status": 500,
+      "body": "Internal Server Error",
+      "classification": "Observed behavior; desired degradation and error contract need product confirmation."
+    }
+  },
+  "denied_external_network_attempts": [],
+  "scope": "Real snapshot FastAPI, Pydantic validation, LangGraph guardrail workflow; fake model, planner and external tools; real TS hook in a fake React/fetch VM.",
+  "limitations": [
+    "No live LLM evaluation",
+    "No RAG retrieval or real Chroma data",
+    "No browser rendering or DOM test",
+    "No real model token or latency measurement",
+    "Not evidence of historical user testing work"
+  ]
+}
