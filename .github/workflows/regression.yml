@@ -14,9 +14,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: python -m pip install -r requirements-test.txt
+      - run: python -m pip install -r project/backend/requirements.txt
       - run: npm install --ignore-scripts --no-audit --no-fund
       - run: python -B verify_all.py
+      - name: Start real application and verify HTTP flows
+        run: python -B test_project.py
+      - name: Install frontend dependencies
+        run: npm --prefix project/frontend ci --ignore-scripts --no-audit --no-fund
+      - name: Build complete React frontend
+        run: npm --prefix project/frontend run build
       - uses: actions/upload-artifact@v4
         if: always()
         with:

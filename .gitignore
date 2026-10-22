@@ -11,3 +11,11 @@ api.txt
 *.db
 
 *_raw.log
+
+node_modules/
+dist/
+project/backend/data/
+project/backend/.chroma_data/
+!**/.env.example
+project/frontend/auto-imports.d.ts
+project/frontend/components.d.ts

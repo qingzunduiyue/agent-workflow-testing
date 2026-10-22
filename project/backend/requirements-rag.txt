@@ -1,0 +1,6 @@
+-r requirements-live.txt
+langchain-chroma==1.1.0
+langchain-huggingface==1.2.1
+langchain-text-splitters==1.1.1
+sentence-transformers==5.2.3
+docx2txt==0.9

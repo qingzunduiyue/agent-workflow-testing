@@ -1,0 +1,10 @@
+/* src/index.css */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* 你的自定义样式依然可以写在下面 */
+body {
+  background-color: #f3f4f6;
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}

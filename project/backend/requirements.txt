@@ -1,0 +1,4 @@
+-r ../../requirements-test.txt
+uvicorn==0.41.0
+pydantic-settings==2.13.1
+python-dotenv==1.2.2
